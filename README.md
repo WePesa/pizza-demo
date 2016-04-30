@@ -9,10 +9,10 @@
 - [Bower](bower.io) (`npm install --global bower`)
 - [Ruby](https://www.ruby-lang.org) and then `gem install sass`
 - [Grunt](http://gruntjs.com/) (`npm install --global grunt-cli`)
-- [bloc](http://github.com/blockapps/bloc) ('npm install blockapps-bloc@1.1.1-beta2')
+- [bloc](http://github.com/blockapps/bloc) ('npm install -g blockapps-bloc@1.1.1-beta2')
 
 ### Up and running
-1) Install the blockapps commandline tool bloc: `npm install blockapps-bloc@1.1.1-beta2`
+1) Install the blockapps commandline tool bloc: `npm install -g blockapps-bloc@1.1.1-beta2`
 
 2) create a new bloc project `bloc init`
 
