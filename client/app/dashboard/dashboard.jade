@@ -1,0 +1,48 @@
+navbar
+
+.internal--page__wrapper.dashboard-page
+  .container
+    .row
+      .col-md-10.col-md-offset-1
+        h1 Decentralized Pizza
+        .panel.panel-default.col-md-5
+          .panel-body
+            |  
+            p 
+              strong Main Address: 
+              | {{user}}
+            p 
+              strong UST: 
+              br
+              | {{balance}}
+        .col-md-7
+          a.btn.btn-primary.pull-right(href="/swap/new", ng-show="name == 'pizzaMaker'")
+            span.glyphicon.glyphicon-plus 
+            &nbsp;
+            | New Pizza Contract 
+
+    .row
+      .col-md-10.col-md-offset-1
+
+        h3(ng-show="pizzas.length == 0 ") No pizza contracts yet
+
+        table.table.table-striped(ng-show=" pizzas.length >= 1 ")
+          thead
+            tr
+              th Created Date 
+              th Pizza Contract ID 
+              th Price
+              th Topping 
+              th Status
+          tbody
+            tr(ng-repeat="pizza in pizzas | orderBy: 'stateInt'")
+              td 02/10/2016
+              td 
+                a(href="/swap/{{pizza.address}}/issuance") {{pizza.id}} 
+              td {{pizza.pizzaPrice}}
+              td {{pizza.pizzaToppings}}
+              td(ng-show="pizza.stateInt < 5") OPEN 
+              td(ng-show="pizza.stateInt == 5") CLOSED 
+        
+
+footer
