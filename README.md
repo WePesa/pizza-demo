@@ -12,7 +12,7 @@
 - [bloc](http://github.com/blockapps/bloc) ('npm install -g blockapps-bloc')
 
 ### Up and running
-1) Install the blockapps commandline tool bloc
+1) Install the blockapps commandline tool bloc: `npm install blockapps-bloc@1.1.1-beta2`
 
 2) create a new bloc project `bloc init`
 
