@@ -1,9 +1,14 @@
 ## Intro
 
 ###This app is intended to get you started using the bloc API, which is powered by a STRATO API. It demonstrates 3 main feature of the bloc api.
+
   * Key creation and management
   * Smart contract creation
   * Smart contract invocation
+
+####Application Structure
+This app wires an angular front-end to our node tool bloc for working with smart contracts. Some knowledge of angular is helpful for understanding the app but not required.
+
 
 ## Part I: Key Management
 
@@ -11,7 +16,7 @@ Every interaction with the blockchain requires use of a public/private key pair 
 
 If you use Vagrant bloc will be included in the machine. If you are running this manually you will need to set bloc up yourself. 
 
-Once the environment is set up you will need to create a bloc project by running 
+Once the environment is setup you will need to create a bloc project by running 
 
 `bloc init` 
 
@@ -51,31 +56,13 @@ var req = {
   },
   data : JSON.stringify(details)
 };
-$http(req).then(response => {
-  console.log("ADDRESS of POST");
-  console.log(response.data);
-
-  $scope.newContract = response.data;
-  /**
-   * After deploying the smart contract we will call 
-   * the contract method and pass in the contract details
-   */
-  var data = {
-    "password": "thepass",
-    "method": "setUpPizzaDetails",
-    "args": {
-      "price": $scope.pizzaContract.price,
-      "topping": $scope.pizzaContract.topping
-      //,
-      //"oracleAddress": $scope.pizzaContract.oracleAddress
-    },
-    "contract": "Pizza"
-  };
+$http(req).then(response => {...
 ```
 
 In this sample we are storing the contract src in the index file. For obvious reasons this is not secure but is more than fine for demonstration. 
 
-```var details = {
+```
+var details = {
   password: "thepass",
   src:  $('#contract_source').text()
 };
@@ -91,12 +78,44 @@ Once we have the contract we can POST the source to our bloc api that is running
   },
   data : JSON.stringify(details)
 };
-$http(req).then(response => {
+$http(req).then(response => {...
 ```
+
+Once this returns successfully we have created a new smart contract with our pizzaMaker user.
+
+###Part III: Smart Contract Invocation
 
 After our upload has finished successfully we then populate the newly created contract with our topping and pricing details
 
 ```
+var data = {
+  "password": "thepass",
+  "method": "setUpPizzaDetails",
+  "args": {
+    "price": $scope.pizzaContract.price,
+    "topping": $scope.pizzaContract.topping
+    //,
+    //"oracleAddress": $scope.pizzaContract.oracleAddress
+  },
+  "contract": "Pizza"
+};
+
+var req = {
+ method: 'POST',
+ url: appConfig.keyserver + 'users/' + localStorageService.get('user')+ '/'+ localStorageService.get('address') + '/contract/Pizza/' + $scope.newContract + '/call',
+ headers: {
+   'Content-Type': 'application/json'
+ },
+ data: JSON.stringify(data)
+};
+
+$http(req).then(response => {...
+```
+
+Here we are hitting the contract method route, you can see above that we pass in the method name as a POST parameter `"method": "setUpPizzaDetails"`
+
+Now if you logout, and then login as the buyer we can fund this contract which will hold the money until the buyer's satisfaction is indicated.
+
 
 
 
