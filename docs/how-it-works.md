@@ -1,6 +1,6 @@
 ## Intro
 
-###This app is intended to get you started using the bloc API, which is powered by a STRATO API. It demonstrates 3 main features of the bloc api.
+This app is intended to get you started using the bloc API, which is powered by a STRATO API. It demonstrates 3 main features of the bloc api.
 
   * Key creation and management
   * Smart contract creation
