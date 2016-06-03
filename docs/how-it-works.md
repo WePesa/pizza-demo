@@ -14,20 +14,29 @@ This app wires an angular front-end to our node tool bloc for working with smart
 
 Every interaction with the blockchain requires use of a public/private key pair and associated account on the blockchain. To do this you will need an instance of bloc running to make requests to.
 
-If you use Vagrant bloc will be included in the machine. If you are running this manually you will need to set bloc up yourself. 
+If you use Vagrant bloc will be included in the machine. If you are running this manually you will need to set bloc up yourself.
 
-Once the environment is setup you will need to create a bloc project by running 
+Once the environment is setup you will need to create a bloc project by running
 
-`bloc init` 
+```
+bloc init
+```
+
+Name the app `myApp` and provide your name.  Use the default apiURL and at the end of the installation build the app by
+```
+cd myApp
+npm install
+```
 
 Then you will need 3 users. For this example use `thepass` as the password for each user and run the following commands
 
-`bloc genkey pizzaMaker`
-`bloc genkey buyer`
-`bloc genkey oracle`
+```
+bloc genkey pizzaMaker
+bloc genkey buyer
+bloc genkey oracle
+```
 
-
-Note: In the bloc project directory you will see `app/users/` with associated username directories. These directories contain the keys associated with those users. 
+Note: In the bloc project directory you will see `app/users/` with associated username directories. These directories contain the keys associated with those users.
 
 Finally run `bloc start` in your bloc project directory and your bloc API will be up and ready to handle requests from the angular app.
 
@@ -59,7 +68,7 @@ var req = {
 $http(req).then(response => {...
 ```
 
-In this sample we are storing the contract src in the index file. For obvious reasons this is not secure but is more than fine for demonstration. 
+In this sample we are storing the contract src in the index file. For obvious reasons this is not secure but is more than fine for demonstration.
 
 ```
 var details = {
@@ -123,7 +132,7 @@ function setUpPizzaDetails(uint price, string topping) {
 }
 ```
 
-Now if you logout, and then login as `buyer` we will see the newly created contract listed. You will notice that this contract "state" is `open`. In the bloc api there is a route to check the state of the contract. 
+Now if you logout, and then login as `buyer` we will see the newly created contract listed. You will notice that this contract "state" is `open`. In the bloc api there is a route to check the state of the contract.
 
 ```
 $http.get(appConfig.keyserver + 'contracts/Pizza/' + contract + '/state/').then(response => {
@@ -166,9 +175,3 @@ function rateSatisfaction(bool isHappy) {
   }
 }
 ```
-
-
-
-
-
-
