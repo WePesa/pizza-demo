@@ -37,10 +37,9 @@ contract Pizza {
   /**
    * Set the details specific to this pizza 
    */
-  function setUpPizzaDetails(uint price, string topping, address oracleAddress) {
+  function setUpPizzaDetails(uint price, string topping) {
     stateMessage = "Pizza details set";
     message = stateMessage;
-    oracle = oracleAddress;
     stateInt = 2;
     pizzaPrice = price;
     pizzaToppings = topping;
@@ -76,20 +75,16 @@ contract Pizza {
   }
 
   /**
-   * To rating for the pizza must come from the oracle 
+   * To rating for the pizza to release funds 
    */
   function rateSatisfaction(bool isHappy) {
-    if(msg.sender == oracle) {
-      stateInt = 5;
-      if (isHappy) {
-        stateMessage = "Pizza deliverd, buyer was happy";
-        seller.send(this.balance);
-      } else {
-        stateMessage = "Pizza delivered, buyer was not happy";
-        buyer.send(this.balance);
-      }
+    stateInt = 5;
+    if (isHappy) {
+      stateMessage = "Pizza deliverd, buyer was happy";
+      seller.send(this.balance);
     } else {
-      message = "Only the oracle may rate the pizza";
+      stateMessage = "Pizza delivered, buyer was not happy";
+      buyer.send(this.balance);
     }
   }
 
