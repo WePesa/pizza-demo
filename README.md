@@ -23,6 +23,5 @@ This vm contains everything you need to run the demo
 - `bower install`
 
 ## How it works
-FIXME need final url  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-https://github.com/blockapps/pizza-demo/blob/feature/docs/docs/how-it-works.md
+https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
