@@ -1,6 +1,6 @@
 ## Intro
 
-###This app is intended to get you started using the bloc API, which is powered by a STRATO API. It demonstrates 3 main feature of the bloc api.
+###This app is intended to get you started using the bloc API, which is powered by a STRATO API. It demonstrates 3 main features of the bloc api.
 
   * Key creation and management
   * Smart contract creation
@@ -94,8 +94,6 @@ var data = {
   "args": {
     "price": $scope.pizzaContract.price,
     "topping": $scope.pizzaContract.topping
-    //,
-    //"oracleAddress": $scope.pizzaContract.oracleAddress
   },
   "contract": "Pizza"
 };
@@ -112,11 +110,61 @@ var req = {
 $http(req).then(response => {...
 ```
 
-Here we are hitting the contract method route, you can see above that we pass in the method name as a POST parameter `"method": "setUpPizzaDetails"`
+Here we are hitting the contract method route, you can see above that we pass in the method name as a POST parameter `"method": "setUpPizzaDetails"`. Below is the `setUpPizzaDetails` method from our contract.
 
-Now if you logout, and then login as the buyer we can fund this contract which will hold the money until the buyer's satisfaction is indicated.
+```
+function setUpPizzaDetails(uint price, string topping) {
+  stateMessage = "Pizza details set";
+  message = stateMessage;
+  stateInt = 2;
+  pizzaPrice = price;
+  pizzaToppings = topping;
+}
+```
 
+Now if you logout, and then login as `buyer` we will see the newly created contract listed. You will notice that this contract "state" is `open`. In the bloc api there is a route to check the state of the contract. 
 
+```
+$http.get(appConfig.keyserver + 'contracts/Pizza/' + contract + '/state/').then(response => {
+```
+
+Here I am reading a state integer and know whether or not someone has funded this pizza contract.
+
+If I click on this pizza I will be taken to a detail screen for this specific smart contract. Click fund and you will be prompted to sign a transaction to fund this smart contract for the specified amount. This is achieved in the same way as calling other contract methods, however this time we will send value with this transaction.
+
+```
+var data = {
+  "password": $scope.password,
+  "method": "buyerAcceptsPizzaContract",
+  "args": {},
+  "contract": "Pizza",
+  "value": $scope.contractState.pizzaPrice
+};
+var req = {
+ method: 'POST',
+ url: appConfig.keyserver + 'users/' + localStorageService.get('user')+ '/'+ localStorageService.get('address') + '/contract/Pizza/' + $stateParams.id + '/call',
+ headers: {
+   'Content-Type': 'application/json'
+ },
+ data: JSON.stringify(data)
+};
+
+$http(req).then(response => {...
+```
+At this point the contract is the custodian of the funds and has not paid the `pizzaMaker` yet. To finalize the contract as the buyer we can click the "Rate Delivery" button and then click the happy button. This will send a final transaction to the smart contract indicating that we are satisfied and the pizzaMaker will be sent the funds. Below is the method in the smart contract that pays out the funds of the contract.
+
+```
+function rateSatisfaction(bool isHappy) {
+  stateInt = 5;
+  if (isHappy) {
+    stateMessage = "Pizza deliverd, buyer was happy";
+    seller.send(this.balance);
+  } else {
+    stateMessage = "Pizza delivered, buyer was not happy";
+    buyer.send(this.balance);
+  }
+}
+```
 
 
 
