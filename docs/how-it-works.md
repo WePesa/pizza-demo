@@ -70,7 +70,8 @@ var details = {
 
 Once we have the contract we can POST the source to our bloc api that is running. Here you can see we are using local storage to save the username and public address for the user who is uploading the contract.
 
-```var req = {
+```
+var req = {
   method: 'POST',
   url: appConfig.keyserver + 'users/' + localStorageService.get('user') + '/' + localStorageService.get('address') + '/contract',
   headers: {
