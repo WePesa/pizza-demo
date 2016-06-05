@@ -1,10 +1,15 @@
 ## Intro
 
-This app is intended to get you started using the `bloc` API, which is powered by a `strato` API. It demonstrates 3 main features of the `bloc` API:
+This app is intended to get you started using the `bloc` API, which is powered by a `strato` API. It demonstrates three main features of the `bloc` API:
 
   * Key creation and management
   * Smart contract creation
   * Smart contract invocation
+
+###Pre-requisites
+  * `bloc` installation + tutorial
+  * `blockapps-js` tutorial
+  * `strato-api` walkthrough
 
 ####Application Structure
 This app wires an angular front-end to our node tool bloc for working with smart contracts. Some knowledge of angular is helpful for understanding the app but not required.
