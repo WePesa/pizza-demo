@@ -22,7 +22,7 @@ Once the environment is setup you will need to create a `bloc` project by runnin
 bloc init
 ```
 
-Name the app `myApp` and provide your name.  Use the default apiURL and at the end of the installation build the app by
+Name the app `myApp` and provide your name.  Use the default `apiURL` and at the end of the installation build the app by
 ```sh
 cd myApp
 npm install
@@ -76,7 +76,7 @@ var details = {
 };
 ```
 
-Once we have the contract we can `POST` the source to our `bloc` api that is running. Here you can see we are using local storage to save the username and public address for the user who is uploading the contract.
+Once we have the contract we can `POST` the source to our `bloc` API that is running. Here you can see we are using local storage to save the username and public address for the user who is uploading the contract.
 
 ```js
 var req = {
@@ -131,7 +131,7 @@ function setUpPizzaDetails(uint price, string topping) {
 }
 ```
 
-Now if you logout, and then login as `buyer` you will see the newly created contract listed. You will notice that this contract "state" is `open`. In the `bloc` api there is a route to check the state of the contract.
+Now if you logout, and then login as `buyer` you will see the newly created contract listed. You will notice that this contract "state" is `open`. In the `bloc` API there is a route to check the state of the contract.
 
 ```js
 $http.get(appConfig.keyserver + 'contracts/Pizza/' + contract + '/state/').then(response => {
