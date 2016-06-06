@@ -2,10 +2,17 @@
 
 ### Vagrant Installation
 This vm contains everything you need to run the demo.
+* Note for Mac users:  If you run into issues with the installed vagrant version, remove the apt-get version using `apt-get auto-remove vagrant` and download the deb installer from the Vagrant website.
 
-Once the VM is up, ssh in and follow the rest of the instructions at https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
-* `cd vagrant`
-* `vagrant up`
+* Get the latest ubuntu 14.0
+ 
+  `vagrant box add ubuntu/trusty64`
+* Get the VM UP
+ 
+  `cd vagrant`
+
+  `vagrant up`
+* Once up, ssh in and follow the rest of the instructions at https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
 * `vagrant ssh`
 
 ### Manual Installation
