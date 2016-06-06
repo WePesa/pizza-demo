@@ -1,7 +1,9 @@
 # Pizza-Demo
 
 ### Vagrant Installation
-This vm contains everything you need to run the demo
+This vm contains everything you need to run the demo.
+
+Once the VM is up, ssh in and follow the rest of the instructions at https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
 * `cd vagrant`
 * `vagrant up`
 * `vagrant ssh`
