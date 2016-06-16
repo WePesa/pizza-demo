@@ -1,34 +1,36 @@
-# Pizza-Demo 
+# Pizza-Demo
 
-## Getting Started
+### Vagrant Installation
+This vm contains everything you need to run the demo.
+* Note for Mac users:  If you run into issues with the installed vagrant version, remove the apt-get version using `apt-get auto-remove vagrant` and download the deb installer from the Vagrant website.
 
-### Prerequisites
+* Get the latest ubuntu 14.0
+ 
+  `vagrant box add ubuntu/trusty64`
+* Get the VM UP
+ 
+  `cd vagrant`
+
+  `vagrant up`
+* Once up, ssh in and follow the rest of the instructions at https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
+* `vagrant ssh`
+
+### Manual Installation
+
+#### Prerequisites
 
 - [Git](https://git-scm.com/)
 - [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
 - [Bower](bower.io) (`npm install --global bower`)
-- [Ruby](https://www.ruby-lang.org) and then `gem install sass`
 - [Grunt](http://gruntjs.com/) (`npm install --global grunt-cli`)
 - [bloc](http://github.com/blockapps/bloc) (`npm install -g blockapps-bloc@1.1.1-beta2`)
 
-### Up and running
-1) Install the blockapps commandline tool bloc: `npm install -g blockapps-bloc@1.1.1-beta2`
+#### Installing the App
+- `git clone https://github.com/blockapps/pizza-demo.git`
+- `cd pizza-demo`
+- `npm install`
+- `bower install`
 
-2) create a new bloc project `bloc init`
+## How it works
 
-3) You will need to create 3 users, pizzaMaker, oracle, and buyer
-
-4) Run your bloc server
-
-5) Now run the pizza app
-
-6) Create pizzas!
-
-### Developing
-
-1. `npm install`
-
-2. `bower install`
-
-3. `grunt serve` 
-
+https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
