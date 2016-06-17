@@ -1,13 +1,19 @@
 # Pizza-Demo
 
-## Installation
-
 ### Vagrant Installation
-* `cd vagrant`
-* `vagrant up`
-* `vagrant ssh`
+This vm contains everything you need to run the demo.
+* Note for Mac users:  If you run into issues with the installed vagrant version, remove the apt-get version using `apt-get auto-remove vagrant` and download the deb installer from the Vagrant website.
 
-Skip the manual installation instructions, and follow the instructions under `Running the Demo` paragraph.
+* Get the latest ubuntu 14.0
+ 
+  `vagrant box add ubuntu/trusty64`
+* Get the VM UP
+ 
+  `cd vagrant`
+
+  `vagrant up`
+* Once up, ssh in and follow the rest of the instructions at https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
+* `vagrant ssh`
 
 ### Manual Installation
 
@@ -20,28 +26,11 @@ Skip the manual installation instructions, and follow the instructions under `Ru
 - [bloc](http://github.com/blockapps/bloc) (`npm install -g blockapps-bloc@1.1.1-beta2`)
 
 #### Installing the App
-- git clone https://github.com/blockapps/pizza-demo.git
-- cd pizza-demo
-- npm install
-- bower install
+- `git clone https://github.com/blockapps/pizza-demo.git`
+- `cd pizza-demo`
+- `npm install`
+- `bower install`
 
-## Running the Demo
+## How it works
 
-### Create the demo users in a bloc app
-* In a separate folder, create a new bloc project `bloc init`
-  * app name: tmp
-  * API url: http://strato-dev3.blockapps.net/
-* Initialize the app
-  * `cd tmp`
-  * `npm install`
-* Create 3 users
- * `bloc genkey pizzaMaker`
- * `bloc genkey buyer`
- * `bloc genkey oracle`
-* Run the bloc server
-  `bloc start`
-
-### Start the pizza demo
-  * `cd pizza-demo`
-  * `grunt serve`
-  * Refresh the pizza-demo page at `localhost:9000`
+https://github.com/blockapps/pizza-demo/blob/develop/docs/how-it-works.md
