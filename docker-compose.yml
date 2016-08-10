@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  bloc:
+#    image: auth.blockapps.net:5000/blockapps/bloc-pizza
+    image: bloc-pizza
+    build: 
+      context: bloc_pizza_docker
+
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      fqdn: "${fqdn}"
+      HOST: 0.0.0.0
+      APIURL: http://0.0.0.0
+
+  pizza:
+#    image: auth.blockapps.net:5000/blockapps/pizza
+    image: pizza
+    build: 
+      context: pizza_docker
+
+    depends_on:
+      - bloc
+    restart: always
+
