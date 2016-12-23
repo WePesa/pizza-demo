@@ -11,17 +11,17 @@ class IssuanceController {
     $scope.eventLink = '/swap/' + $stateParams.id + '/events';
 
     var getDate = function() {
-      var currentdate = new Date(); 
-      var datetime = (currentdate.getMonth()+1)  + "/" 
+      var currentdate = new Date();
+      var datetime = (currentdate.getMonth()+1)  + "/"
                 + currentdate.getDate()+ "/"
                 + currentdate.getFullYear();
       return datetime;
     };
 
     var getTime = function(){
-      var currentdate = new Date(); 
-      var time =  currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
+      var currentdate = new Date();
+      var time =  currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds();
       return time;
     }
@@ -54,6 +54,8 @@ class IssuanceController {
       }).then(response => {
         $scope.contractState = response.data;
         $scope.state = $scope.contractState.stateInt;
+        console.log($scope.contractState);
+        console.log(response.data);
         if ($scope.lastState == $scope.stateInt) {
           // Contract state has not changed
         }  else { // Contract state has changed
@@ -66,8 +68,8 @@ class IssuanceController {
 
     /**
      * getContractBalances queries the STRATO API were my contract is deployed
-     * to get the current balance of the contract. This can be useful to show 
-     * users when contract balances change. 
+     * to get the current balance of the contract. This can be useful to show
+     * users when contract balances change.
      */
     $scope.getContractBalances = function() {
       $http.get(appConfig.apiEndPoint + 'account?address=' + $stateParams.id).then(response => {
@@ -85,13 +87,13 @@ class IssuanceController {
     $scope.$on("$destroy", function handler() {
         $interval.cancel(fetchState);
     });
-    
+
     $scope.showOrderModal = function() {
       $('#sign-transaction').modal('show');
     };
 
     /**
-     * Buyer order's the pizza by funding the smart contract 
+     * Buyer order's the pizza by funding the smart contract
      */
     $scope.orderPizza = function() {
       /**
@@ -114,7 +116,7 @@ class IssuanceController {
        },
        data: JSON.stringify(data)
       };
-  
+
       $http(req).then(response => {
         $scope.getContractState();
         $('#mining-transaction').modal('hide');

@@ -53,7 +53,7 @@
     </script>
 
     <div id="contract_source" style="display: none;">
-contract Pizza {
+  contract Pizza {
   /**
    * It is helpful to think of
    * smart contracts as state machine.
@@ -125,10 +125,10 @@ contract Pizza {
   function rateSatisfaction(bool isHappy) {
     stateInt = 5;
     if (isHappy) {
-      stateMessage = "Pizza deliverd, buyer was happy";
+      stateMessage = "The buyer was happy.";
       seller.send(this.balance);
     } else {
-      stateMessage = "Pizza delivered, buyer was not happy";
+      stateMessage = "The buyer requested refund.";
       buyer.send(this.balance);
     }
   }
@@ -150,7 +150,6 @@ contract Pizza {
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/moment/moment.js"></script>
-      <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
       <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
       <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>

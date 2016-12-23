@@ -35,7 +35,7 @@ contract Pizza {
   }
 
   /**
-   * Set the details specific to this pizza 
+   * Set the details specific to this pizza
    */
   function setUpPizzaDetails(uint price, string topping) {
     stateMessage = "Pizza details set";
@@ -61,7 +61,7 @@ contract Pizza {
   }
 
   /**
-   * 
+   *
    */
   function pizzaAccepted() {
     if (msg.sender == buyer) {
@@ -75,15 +75,15 @@ contract Pizza {
   }
 
   /**
-   * To rating for the pizza to release funds 
+   * To rating for the pizza to release funds
    */
   function rateSatisfaction(bool isHappy) {
     stateInt = 5;
     if (isHappy) {
-      stateMessage = "Pizza deliverd, buyer was happy";
+      stateMessage = "The buyer was happy.";
       seller.send(this.balance);
     } else {
-      stateMessage = "Pizza delivered, buyer was not happy";
+      stateMessage = "The buyer requested refund.";
       buyer.send(this.balance);
     }
   }
