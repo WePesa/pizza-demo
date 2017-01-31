@@ -19,7 +19,7 @@ class EventsController {
     $scope.getContractState();
 
     /**
-     * Get the public address for the oracle. 
+     * Get the public address for the oracle.
      */
     $scope.getPcs = function(){
       $http.get(appConfig.keyserver + 'users/oracle' ).then(response =>{
@@ -29,7 +29,7 @@ class EventsController {
     $scope.getPcs();
 
     /**
-     * Rate Satisfaction 
+     * Rate Satisfaction
      */
     $scope.rateSatisfaction = function(choice) {
       $('#mining-transaction').modal('show');
@@ -40,7 +40,11 @@ class EventsController {
         "args": {
           "isHappy": $scope.isHappy
         },
-        "contract": "PizzaContract"
+        "contract": "PizzaContract",
+        "txParams":{
+          "gasLimit" : 100000000,
+          "gasPrice" : 1
+        }
       };
 
       var req = {

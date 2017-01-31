@@ -4,7 +4,7 @@
  */
 
 'use strict';
-import Thing from '../api/thing/thing.model';
+var Thing = require('../api/thing/thing.model');
 
 Thing.find({}).removeAsync()
   .then(function() {
@@ -37,4 +37,3 @@ Thing.find({}).removeAsync()
              'and openshift subgenerators'
     });
   });
-

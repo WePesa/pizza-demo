@@ -19,10 +19,9 @@ class DashboardController {
     $scope.name = localStorageService.get('user');
 
     var getAccountData = function(address) {
-      console.log(appConfig);
+      localStorageService.set('address', address);
       $http.get(appConfig.apiEndPoint + 'account?address=' + address).then(response =>{
         $scope.balance = (response.data[0].balance / 1000000000000000000).toFixed(3);
-        localStorageService.set('address', address);
       });
     };
 

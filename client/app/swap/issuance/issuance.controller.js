@@ -106,7 +106,11 @@ class IssuanceController {
         "method": "buyerAcceptsPizzaContract",
         "args": {},
         "contract": "Pizza",
-        "value": $scope.contractState.pizzaPrice
+        "value": $scope.contractState.pizzaPrice,
+        "txParams":{
+          "gasLimit" : 100000000,
+          "gasPrice" : 1
+        }
       };
       var req = {
        method: 'POST',
