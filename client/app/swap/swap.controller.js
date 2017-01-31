@@ -25,19 +25,23 @@ class SwapController {
     }
     //$scope.getOracleAddress();
 
-    $scope.user = localStorageService.get('user'); 
+    $scope.user = localStorageService.get('user');
 
     $scope.submit = function(){
       $('#mining-transaction').modal('show');
       /**
        * In this sample app we will fetch the contract src from the page using jQuery.
-       * You could get the contract source from where ever you like. 
+       * You could get the contract source from where ever you like.
        */
       var details = {
         password: "thepass",
-        src:  $('#contract_source').text()
+        src:  $('#contract_source').text(),
+        txParams: {
+          gasLimit:100000000,
+          gasPrice:1
+        }
       };
-      
+
       var req = {
         method: 'POST',
         url: appConfig.keyserver + 'users/' + localStorageService.get('user') + '/' + localStorageService.get('address') + '/contract',
@@ -52,9 +56,10 @@ class SwapController {
 
         $scope.newContract = response.data;
         /**
-         * After deploying the smart contract we will call 
+         * After deploying the smart contract we will call
          * the contract method and pass in the contract details
          */
+
         var data = {
           "password": "thepass",
           "method": "setUpPizzaDetails",
@@ -64,9 +69,13 @@ class SwapController {
             //,
             //"oracleAddress": $scope.pizzaContract.oracleAddress
           },
-          "contract": "Pizza"
+          "contract": "Pizza",
+          "txParams": {
+            gasLimit:100000000,
+            gasPrice:1
+          }
         };
-  
+
         var req = {
          method: 'POST',
          url: appConfig.keyserver + 'users/' + localStorageService.get('user')+ '/'+ localStorageService.get('address') + '/contract/Pizza/' + $scope.newContract + '/call',
@@ -75,10 +84,10 @@ class SwapController {
          },
          data: JSON.stringify(data)
         };
-    
+
         $http(req).then(response => {
           /**
-           * Now that we have a successfully deployed smart contract 
+           * Now that we have a successfully deployed smart contract
            * let's transition to the detail view of the contract.
            */
           $('#mining-transaction').modal('hide');
@@ -93,9 +102,11 @@ class SwapController {
           $scope.data = response.data || "Request failed";
           $scope.status = response.status;
       });
-      
+
     }
 
+    //NEWCODE
+    // $scope.submit = $pizzaServer.createPizza(user, password)
   }
 
 }

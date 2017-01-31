@@ -21,6 +21,14 @@ class LoginController {
 
     });
 
+    //NEWCODE====
+    // $pizzaServer.getUsers()
+    //   .then(users => {
+    //     console.log("we have users");
+    //     $scope.users = response.data;
+    //     console.log(response);
+    //   });
+
     $scope.submit = function(user){
 
       console.log(user);
@@ -31,8 +39,8 @@ class LoginController {
 
       if (saveUserToStorage(user)){
         $state.transitionTo('dashboard', {name: user}, {
-          reload: true, 
-          inherit: false, 
+          reload: true,
+          inherit: false,
           notify: true
         });
         //$location.path('/dashboard/' + user);
@@ -64,11 +72,11 @@ class LoginController {
           $scope.data = response.data || "Request failed";
           $scope.status = response.status;
       });
-    } 
-    
+    }
+
   }
 
-  
+
 
 }
 
