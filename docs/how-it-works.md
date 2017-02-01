@@ -12,17 +12,17 @@ This app wires an angular front-end to our node tool bloc for working with smart
 
 ## Part I: Key Management
 
-Every interaction with the blockchain requires use of a public/private key pair and associated account on the blockchain. To do this you will need an instance of bloc running to make requests to.
+Every interaction with the blockchain requires use of a public/private key pair and associated account on the blockchain. To do this you will need an instance of bloc running.
 
-If you use Vagrant bloc will be included in the machine. If you are running this manually you will need to set bloc up yourself.
+If you use Vagrant bloc will be included in the machine. If you are running this manually you will need to set bloc up yourself. For instructions on getting started with bloc please visit https://github.com/blockapps/bloc
 
-Once the environment is setup you will need to create a bloc project by running
+Once bloc is installed you will need to create a bloc-server by running
 
 ```sh
 bloc init
 ```
 
-Name the app `myApp` and provide your name.  Use the default apiURL and at the end of the installation build the app by
+Name the app `myApp` and provide your name. The value for `apiURL` is whichever strato instance you are running. If you do not have a strato instance, the default value is our public test net we provide for developers. At the end of the installation build the app by
 ```sh
 cd myApp
 npm install
@@ -40,14 +40,14 @@ Note: In the bloc project directory you will see `app/users/` with associated us
 
 Finally run `bloc start` in your bloc project directory and your bloc API will be up and ready to handle requests from the angular app.
 
-Now in your pizza app root directory run `grunt serve` and you should see the app running on localhost:9000.
+Now in your pizza app root directory and open the file `server/config/environment/shared.js`. Change the `apiEndPoint` to be the same url as used in `apiURL` but leave the `/eth/v1.2/` extension to the route. Once completed, run `grunt serve` and you should see the app running on localhost:9000.
 
 Login with the pizzaMaker user and we can then deploy a new smart contract.
 
 
 ## Part II: Smart Contract Creation
 
-Here you can see the create contract button. Click create contract, then choose 1 topping and enter an integer price (ex: 6), and press deploy contract. You should now see a pizza contract in the contract dashboard.
+Here you can see the `NEW PIZZA CONTRACT` button. Click the button, then choose 1 topping and enter an integer price (ex: 6), and press deploy contract. You should now see the details of your newly deployed  pizza contract.
 
 Below is a code snippet showing how the contract was actually deployed
 
@@ -68,7 +68,7 @@ var req = {
 $http(req).then(response => {...
 ```
 
-In this sample we are storing the contract src in the index file. For obvious reasons this is not secure but is more than fine for demonstration.
+In this sample we are storing the contract src in the index.html file. For obvious reasons this is not secure but is more than fine for demonstration.
 
 ```js
 var details = {
@@ -140,7 +140,7 @@ $http.get(appConfig.keyserver + 'contracts/Pizza/' + contract + '/state/').then(
 
 Here I am reading a state integer and know whether or not someone has funded this pizza contract.
 
-If I click on this pizza I will be taken to a detail screen for this specific smart contract. Click fund and you will be prompted to sign a transaction to fund this smart contract for the specified amount. This is achieved in the same way as calling other contract methods, however this time we will send value with this transaction.
+If I click on this pizza, I am taken to a detail screen for this specific smart contract. Click fund and you will be prompted to sign a transaction to fund this smart contract for the specified amount. This is achieved in the same way as calling other contract methods, however this time we will send value with this transaction.
 
 ```js
 var data = {
